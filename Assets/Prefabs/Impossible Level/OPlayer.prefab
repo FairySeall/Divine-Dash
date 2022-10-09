@@ -51,6 +51,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,7 +149,7 @@ MonoBehaviour:
   jumpPower: 7.3
   isGrounded: 0
   isGameOver: 0
-  death: {fileID: 8300000, guid: 7af4c8c57ae641e458fda5c471c94502, type: 3}
+  death: {fileID: 8300000, guid: c6d5daa4938e35a4e955340e04ef187c, type: 3}
   jump: {fileID: 0}
   fallMultiplier: 5
   animator: {fileID: 5526522885580807526}
@@ -157,9 +158,14 @@ MonoBehaviour:
   orbCheck: 0
   jumpPowerChange: 0
   jumped: 0
+  jumpedFromOrb: 0
   checkTime: 0
   isInOrb: 0
   velocityZero: 0
+  duplicated: 0
+  jumpedFromJumpOrb: 0
+  jumpedFromGravityOrb: 0
+  jumpedFromWaveDash: 0
 --- !u!114 &5526522885580807521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +199,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5526522885580807531}
+        m_TargetAssemblyTypeName: 
         m_MethodName: JumpCheck
         m_Mode: 1
         m_Arguments:

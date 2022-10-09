@@ -36,6 +36,7 @@ public class ILPlayerScript : MonoBehaviour
     public bool jumpedFromJumpOrb = false;
     public bool jumpedFromGravityOrb = false;
     public bool jumpedFromWaveDash = false;
+    public int died = 0;
 
     void Awake()
     {
@@ -58,6 +59,7 @@ public class ILPlayerScript : MonoBehaviour
         myUltimateChallenge = GameObject.FindObjectOfType<UltimateChallenge>();
 
         JumpCount = MaxJumps;
+        died = 0;
     }
 
     void FixedUpdate()
@@ -148,9 +150,14 @@ public class ILPlayerScript : MonoBehaviour
 
     void GameOver()
     {
-        isGameOver = true;
-        myAudioPlayer.PlayOneShot(death);
-        myUltimateChallenge.GameOver();
+        if (died == 0)
+        {
+            isGameOver = true;
+            myAudioPlayer.PlayOneShot(death);
+            myUltimateChallenge.GameOver();
+            died = 1;
+        }
+        
     }
 
     void OnCollisionEnter2D(Collision2D other)
