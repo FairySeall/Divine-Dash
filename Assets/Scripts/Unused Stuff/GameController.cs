@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     public GameObject newAlert;
     public float RadNum = 0f;
     public TextMeshProUGUI myText;
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void GameOver()
     {
