@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public Text bestText;
     public Text currentText;
     public GameObject newAlert;
+    public float RadNum = 0f;
    
 
     // Start is called before the first frame update
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
+        RadNum = Random.Range(1, 20);
+        Debug.Log(RadNum);
         Invoke("ShowOverPanel", 2.0f);
     }
     void ShowOverPanel()
