@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ProgressBar : MonoBehaviour
 {
     [SerializeField] GameObject player;
     public GameObject finish;
+    public TextMeshProUGUI progress;
+    float progressPercentage;
 
     Image progressBar;
     float maxDistance;
@@ -22,7 +25,8 @@ public class ProgressBar : MonoBehaviour
         if (progressBar.fillAmount < 1)
         {
             progressBar.fillAmount = (maxDistance - finish.transform.position.x) / maxDistance;
-            
         }
+        progressPercentage = progressBar.fillAmount * 100;
+        progress.text = progressPercentage.ToString("F2") + "%";
     }
 }

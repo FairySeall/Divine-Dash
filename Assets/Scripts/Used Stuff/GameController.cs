@@ -15,12 +15,18 @@ public class GameController : MonoBehaviour
     public GameObject newAlert;
     public float RadNum = 0f;
     public TextMeshProUGUI myText;
+    public GameObject finish;
+    public TextMeshProUGUI currentScore;
+    public TextMeshProUGUI bestScore;
+    float progressPercentage;
+    float maxDistance;
+    float progress = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxDistance = finish.transform.position.x;
     }
 
     // Update is called once per frame
@@ -143,6 +149,16 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("Best", score);
             newAlert.SetActive(true);
         }
+        finish = GameObject.Find("Finish");
+        progress = (maxDistance - finish.transform.position.x) / maxDistance;
+        progressPercentage = progress * 100;
+        currentScore.text = "Current Score : " + progressPercentage.ToString("F2") + "%";
+        if (progressPercentage > PlayerPrefs.GetFloat("Best", 0))
+        {
+            PlayerPrefs.SetFloat("Best", progressPercentage);
+            newAlert.SetActive(true);
+        }
+        bestScore.text = "Best Score : " + PlayerPrefs.GetFloat("Best", 0).ToString("F2");
         bestText.text = "Best Score : " + PlayerPrefs.GetInt("Best", 0).ToString();
         currentText.text = "Current Score : " + score.ToString();
 
