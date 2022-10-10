@@ -7,7 +7,6 @@ public class SettingsMenu : MonoBehaviour
 {
 
     [SerializeField] Slider volumeSlider;
-    public bool muted = false;
 
     void Start()
     {

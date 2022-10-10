@@ -6,6 +6,7 @@ public class PartEnder : MonoBehaviour
     public Animator animator;
     [SerializeField] GameObject player;
     public GameObject partDone;
+    public static int currentLevel;
 
     void Update()
     {
@@ -13,6 +14,7 @@ public class PartEnder : MonoBehaviour
         if (player.transform.position.x > partDone.transform.position.x)
         {
             FadeToMenu();
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
     }
 

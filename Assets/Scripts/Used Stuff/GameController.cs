@@ -143,6 +143,26 @@ public class GameController : MonoBehaviour
         {
             myText.text = "You have a choice, a choice to keep fighting";
         }
+        else if (RadNum == 26)
+        {
+            myText.text = "There's still room to grow";
+        }
+        else if (RadNum == 27)
+        {
+            myText.text = "Don't give up yet";
+        }
+        else if (RadNum == 28)
+        {
+            myText.text = "Be the one to make history";
+        }
+        else if (RadNum == 29)
+        {
+            myText.text = "There is hope";
+        }
+        else if (RadNum == 30)
+        {
+            myText.text = "Stay determined";
+        }
         Debug.Log(RadNum);
         Invoke("ShowOverPanel", 2.0f);
         finish = GameObject.Find("Finish");
