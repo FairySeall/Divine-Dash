@@ -4,6 +4,7 @@ using System.Security.AccessControl;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -21,11 +22,16 @@ public class GameController : MonoBehaviour
     float progressPercentage;
     float maxDistance;
     float progress = 0;
+    public GameObject progressBar;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (ChangeImage.active == false)
+        {
+            progressBar.SetActive(false);
+        }
         maxDistance = finish.transform.position.x;
     }
 
@@ -139,6 +145,9 @@ public class GameController : MonoBehaviour
         }
         Debug.Log(RadNum);
         Invoke("ShowOverPanel", 2.0f);
+        finish = GameObject.Find("Finish");
+        progress = (maxDistance - finish.transform.position.x) / maxDistance;
+        progressPercentage = progress * 100;
     }
     void ShowOverPanel()
     {
@@ -149,9 +158,6 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("Best", score);
             newAlert.SetActive(true);
         }
-        finish = GameObject.Find("Finish");
-        progress = (maxDistance - finish.transform.position.x) / maxDistance;
-        progressPercentage = progress * 100;
         currentScore.text = "Current Score : " + progressPercentage.ToString("F2") + "%";
         if (progressPercentage > PlayerPrefs.GetFloat("Best", 0))
         {
@@ -173,6 +179,4 @@ public class GameController : MonoBehaviour
         score++;
         scoreText.text = score.ToString();
     }
-
-   
 }

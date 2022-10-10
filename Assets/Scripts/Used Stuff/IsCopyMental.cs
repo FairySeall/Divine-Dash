@@ -25,13 +25,25 @@ public class IsCopyMental : MonoBehaviour
     public bool orbCheck = false;
     public bool jumpPowerChange = false;
     public bool jumped = false;
-    bool jumpedFromOrb = false;
+    public bool jumpedFromOrb = false;
     bool canSwitchGravity = false;
     bool canReSwitchGravity = false;
     private GameObject currentTeleporter;
     public bool checkTime = false;
     public bool isInOrb = false;
     public int velocityZero = 0;
+    public bool duplicated = false;
+    public bool jumpedFromJumpOrb = false;
+    public bool jumpedFromGravityOrb = false;
+    public bool jumpedFromWaveDash = false;
+    public int died = 0;
+    public float cubeSize = 0.2f;
+    public float cubesInRow = 0f;
+    float cubesPivotDistance;
+    Vector3 cubesPivot;
+    public float explosionForce = 0f;
+    public float explosionRadius = 0f;
+    public float explosionUpward = 0.4f;
 
     void Awake()
     {
@@ -54,8 +66,14 @@ public class IsCopyMental : MonoBehaviour
         myUltimateChallenge = GameObject.FindObjectOfType<UltimateChallenge>();
 
         JumpCount = MaxJumps;
-
+        died = 0;
         GravityReversed();
+
+        cubesInRow = Random.Range(4, 7);
+        cubesPivotDistance = cubeSize * cubesInRow / 2;
+        cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
+        explosionForce = Random.Range(50, 120);
+        explosionRadius = Random.Range(2, 4);
     }
 
     void FixedUpdate()
@@ -144,11 +162,55 @@ public class IsCopyMental : MonoBehaviour
         }
     }
 
+    public void explode()
+    {
+        gameObject.SetActive(false);
+
+        for (int x = 0; x < cubesInRow; x++)
+        {
+            for (int y = 0; y < cubesInRow; y++)
+            {
+                for (int z = 0; z < cubesInRow; z++)
+                {
+                    createPiece(x, y, z);
+                }
+            }
+        }
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+            }
+        }
+    }
+
+    void createPiece(int x, int y, int z)
+    {
+        GameObject piece;
+        piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
+        piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+
+        piece.AddComponent<Rigidbody>();
+        piece.GetComponent<Rigidbody>().mass = cubeSize;
+    }
+
     void GameOver()
     {
-        isGameOver = true;
-        myAudioPlayer.PlayOneShot(death);
-        myUltimateChallenge.GameOver();
+        if (died == 0)
+        {
+            isGameOver = true;
+            myAudioPlayer.PlayOneShot(death);
+            explode();
+            myUltimateChallenge.GameOver();
+            died = 1;
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -188,10 +250,12 @@ public class IsCopyMental : MonoBehaviour
             if (jumpPowerChange == true)
             {
                 jumpPower = 7.8f;
+                myRigidbody.gravityScale = -7;
             }
             else
             {
                 jumpPower = 7.3f;
+                myRigidbody.gravityScale = 7;
             }
         }
     }
@@ -231,6 +295,7 @@ public class IsCopyMental : MonoBehaviour
                     myRigidbody.velocity = Vector3.zero;
                     myRigidbody.AddForce(Vector3.up * (jumpPower * myRigidbody.mass * myRigidbody.gravityScale * 20.0f));
                     velocityZero = 0;
+                    jumpedFromJumpOrb = true;
                 }
             }
         }
@@ -260,6 +325,7 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true)
             {
                 GravityReversed();
+                jumpedFromGravityOrb = true;
             }
         }
         if (other.tag == "GravityReOrb" && orbCheck != true)
@@ -268,6 +334,7 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true)
             {
                 GravityReReversed();
+                jumpedFromGravityOrb = true;
             }
         }
         if (other.tag == "GravityReReverse")
@@ -295,7 +362,8 @@ public class IsCopyMental : MonoBehaviour
             jumped = false;
             if (jumped == true)
             {
-                myRigidbody.gravityScale = 20;
+                myRigidbody.gravityScale = 80;
+                jumpedFromWaveDash = true;
             }
         }
         if (other.tag == "ReverseWaveDash" && orbCheck != true)
@@ -303,7 +371,8 @@ public class IsCopyMental : MonoBehaviour
             jumped = false;
             if (jumped == true)
             {
-                myRigidbody.gravityScale = -20;
+                myRigidbody.gravityScale = -100;
+                jumpedFromWaveDash = true;
             }
         }
         if (other.tag == "JumpPlatform")
@@ -398,6 +467,7 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true)
             {
                 GravityReversed();
+                jumpedFromGravityOrb = true;
             }
         }
         if (other.tag == "JumpOrb" && orbCheck == false)
@@ -410,6 +480,7 @@ public class IsCopyMental : MonoBehaviour
                     myRigidbody.velocity = Vector3.zero;
                     myRigidbody.AddForce(Vector3.up * (jumpPower * myRigidbody.mass * myRigidbody.gravityScale * 20.0f));
                     velocityZero = 0;
+                    jumpedFromJumpOrb = true;
                 }
             }
         }
@@ -431,18 +502,19 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true)
             {
                 GravityReReversed();
+                jumpedFromGravityOrb = true;
             }
         }
         if (other.tag == "FastGravityOrb")
         {
-            if (jumpedFromOrb && JumpCount == 0 && jumpPowerChange == false)
+            if (jumpedFromOrb && jumped && jumpPowerChange == false)
             {
                 canSwitchGravity = true;
             }
         }
         if (other.tag == "FastGravityReOrb")
         {
-            if (jumpedFromOrb && JumpCount == 0 && jumpPowerChange == true)
+            if (jumpedFromOrb && jumped && jumpPowerChange == true)
             {
                 canReSwitchGravity = true;
             }
@@ -452,6 +524,7 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true && jumpPowerChange == false)
             {
                 myRigidbody.gravityScale = 80;
+                jumpedFromWaveDash = true;
             }
         }
         if (other.tag == "ReverseWaveDash" && orbCheck != true)
@@ -459,6 +532,7 @@ public class IsCopyMental : MonoBehaviour
             if (jumped == true && jumpPowerChange == true)
             {
                 myRigidbody.gravityScale = -100;
+                jumpedFromWaveDash = true;
             }
         }
         if (other.tag == "TeleportOrbStart" && orbCheck != true)
@@ -485,6 +559,7 @@ public class IsCopyMental : MonoBehaviour
             JumpCount -= 1;
             isInOrb = false;
             velocityZero = 1;
+            jumpedFromJumpOrb = false;
             if (jumpPowerChange == true)
             {
                 jumpPower = 7.8f;
@@ -506,6 +581,7 @@ public class IsCopyMental : MonoBehaviour
             {
                 jumpPower = 7.3f;
             }
+            jumpedFromGravityOrb = false;
         }
         if (other.tag == "GravityReOrb")
         {
@@ -519,10 +595,19 @@ public class IsCopyMental : MonoBehaviour
             {
                 jumpPower = 7.3f;
             }
+            jumpedFromGravityOrb = false;
         }
         if (other.tag == "FastGravityOrb")
         {
             canSwitchGravity = false;
+        }
+        if (other.tag == "WaveDash")
+        {
+            jumpedFromWaveDash = false;
+        }
+        if (other.tag == "ReverseWaveDash")
+        {
+            jumpedFromWaveDash = false;
         }
         if (other.tag == "FastGravityReOrb")
         {
@@ -576,4 +661,3 @@ public class IsCopyMental : MonoBehaviour
         }
     }
 }
-

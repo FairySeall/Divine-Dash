@@ -46,6 +46,7 @@ TagManager:
   - AudioStart
   - NoJumpArea
   - Nothingness
+  - PartDone
   layers:
   - Default
   - TransparentFX

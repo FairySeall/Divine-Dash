@@ -37,6 +37,13 @@ public class ILPlayerScript : MonoBehaviour
     public bool jumpedFromGravityOrb = false;
     public bool jumpedFromWaveDash = false;
     public int died = 0;
+    public float cubeSize = 0.2f;
+    public float cubesInRow = 0f;
+    float cubesPivotDistance;
+    Vector3 cubesPivot;
+    public float explosionForce = 0f;
+    public float explosionRadius = 0f;
+    public float explosionUpward = 0.4f;
 
     void Awake()
     {
@@ -60,6 +67,12 @@ public class ILPlayerScript : MonoBehaviour
 
         JumpCount = MaxJumps;
         died = 0;
+
+        cubesInRow = Random.Range(4, 7);
+        cubesPivotDistance = cubeSize * cubesInRow / 2;
+        cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
+        explosionForce = Random.Range(50, 120);
+        explosionRadius = Random.Range(2, 4);
     }
 
     void FixedUpdate()
@@ -148,12 +161,51 @@ public class ILPlayerScript : MonoBehaviour
         }
     }
 
+    public void explode()
+    {
+        gameObject.SetActive(false);
+
+        for (int x = 0; x < cubesInRow; x++)
+        {
+            for (int y = 0; y < cubesInRow; y++)
+            {
+                for (int z = 0; z < cubesInRow; z++)
+                {
+                    createPiece(x, y, z);
+                }
+            }
+        }
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+            }
+        }
+    }
+
+    void createPiece(int x, int y, int z)
+    {
+        GameObject piece;
+        piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        piece.transform.position = transform.position + new Vector3 (cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
+        piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+
+        piece.AddComponent<Rigidbody>();
+        piece.GetComponent<Rigidbody>().mass = cubeSize;
+    }
+
     void GameOver()
     {
         if (died == 0)
         {
             isGameOver = true;
             myAudioPlayer.PlayOneShot(death);
+            explode();
             myUltimateChallenge.GameOver();
             died = 1;
         }
