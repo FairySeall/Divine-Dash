@@ -1,25 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PartEnder : MonoBehaviour
+public class GameFinished : MonoBehaviour
 {
     public Animator animator;
     [SerializeField] GameObject player;
-    public GameObject partDone;
-    public static int currentLevel;
+    public GameObject gameDone;
+    public static int finishedGame;
 
     void Update()
     {
-        partDone = GameObject.Find("PartDone");
+        gameDone = GameObject.Find("GameDone");
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            if (player.transform.position.x > partDone.transform.position.x)
+            if (player.transform.position.x > gameDone.transform.position.x)
             {
                 FadeToMenu();
-                currentLevel = SceneManager.GetActiveScene().buildIndex;
+                finishedGame = SceneManager.GetActiveScene().buildIndex;
             }
         }
-        
+
     }
 
     public void FadeToMenu()

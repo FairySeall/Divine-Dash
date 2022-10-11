@@ -47,6 +47,7 @@ TagManager:
   - NoJumpArea
   - Nothingness
   - PartDone
+  - GameDone
   layers:
   - Default
   - TransparentFX

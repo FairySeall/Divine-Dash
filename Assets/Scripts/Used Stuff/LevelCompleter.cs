@@ -18,6 +18,7 @@ public class LevelCompleter : MonoBehaviour
     public Image Star11;
     public Image Star12;
     public Image Star13;
+    public Image Crown;
 
     void Awake()
     {
@@ -72,6 +73,10 @@ public class LevelCompleter : MonoBehaviour
         else if (PlayerPrefs.GetInt("Star13Completed") == 1)
         {
             Star13.enabled = true;
+        }
+        else if (PlayerPrefs.GetInt("GameCompleted") == 1)
+        {
+            Crown.enabled = true;
         }
     }
 
@@ -141,6 +146,11 @@ public class LevelCompleter : MonoBehaviour
         {
             Star13.enabled = true;
             PlayerPrefs.SetInt("Star13Completed", 1);
+        }
+        else if (GameFinished.finishedGame == 2)
+        {
+            Crown.enabled = true;
+            PlayerPrefs.SetInt("GameCompleted", 1);
         }
     }
 }

@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
-        RadNum = Random.Range(1, 25);
+        RadNum = Random.Range(1, 50);
         if (RadNum == 1)
         {
             myText.text = "You win some, you lose some";
@@ -163,6 +163,86 @@ public class GameController : MonoBehaviour
         {
             myText.text = "Stay determined";
         }
+        else if (RadNum == 31)
+        {
+            myText.text = "Slowly but surely";
+        }
+        else if (RadNum == 32)
+        {
+            myText.text = "Whatever it takes";
+        }
+        else if (RadNum == 33)
+        {
+            myText.text = "Don't back down yet";
+        }
+        else if (RadNum == 34)
+        {
+            myText.text = "Soon you'll get it";
+        }
+        else if (RadNum == 35)
+        {
+            myText.text = "Triumphs need their failures as well";
+        }
+        else if (RadNum == 36)
+        {
+            myText.text = "Become the hero of the story";
+        }
+        else if (RadNum == 37)
+        {
+            myText.text = "As many tries as it takes";
+        }
+        else if (RadNum == 38)
+        {
+            myText.text = "Persist";
+        }
+        else if (RadNum == 39)
+        {
+            myText.text = "I know you can do it";
+        }
+        else if (RadNum == 40)
+        {
+            myText.text = "Play your heart out";
+        }
+        else if (RadNum == 41)
+        {
+            myText.text = "Failure after failure but that won't stop you trying";
+        }
+        else if (RadNum == 42)
+        {
+            myText.text = "Only way to stay on top is to keep pushing further";
+        }
+        else if (RadNum == 43)
+        {
+            myText.text = "Your story starts with you";
+        }
+        else if (RadNum == 44)
+        {
+            myText.text = "Failure is what truly gives you reason in the end";
+        }
+        else if (RadNum == 45)
+        {
+            myText.text = "Believe in the path you chose to take";
+        }
+        else if (RadNum == 46)
+        {
+            myText.text = "Trying means fighting";
+        }
+        else if (RadNum == 47)
+        {
+            myText.text = "You are filled with determination";
+        }
+        else if (RadNum == 48)
+        {
+            myText.text = "The results don't matter, only your actions do";
+        }
+        else if (RadNum == 49)
+        {
+            myText.text = "Push forward through the challenges you face";
+        }
+        else if (RadNum == 50)
+        {
+            myText.text = "Fight for the future, the future that you envision";
+        }
         Debug.Log(RadNum);
         Invoke("ShowOverPanel", 2.0f);
         finish = GameObject.Find("Finish");
@@ -188,7 +268,14 @@ public class GameController : MonoBehaviour
         bestText.text = "Best Score : " + PlayerPrefs.GetInt("Best", 0).ToString();
         currentText.text = "Current Score : " + score.ToString();
 
-        gameOverPanel.SetActive(true);
+        if (ChangeImage.restart == true)
+        {
+            Restart();
+        }
+        else
+        {
+            gameOverPanel.SetActive(true);
+        }
     }
     public void Restart ()
     {
