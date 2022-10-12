@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
             maxDistance = finish.transform.position.x;
             midDistance = HPD.transform.position.x;
         }
-        
+        died = false;
     }
 
     // Update is called once per frame
