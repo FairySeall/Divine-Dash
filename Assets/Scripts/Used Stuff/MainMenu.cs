@@ -5,6 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject DD;
+    public GameObject DDHPD;
+    public GameObject quit;
+    public GameObject quitHPD;
+    public GameObject no;
+    public GameObject yes;
+    public GameObject question;
+    public GameObject noHPD;
+    public GameObject yesHPD;
+    public GameObject questionHPD;
+
+    void Awake()
+    {
+        if (HPDChecker.isHPD == true)
+        {
+            DD.SetActive(false);  
+            quit.SetActive(false);
+            no.SetActive(false);
+            yes.SetActive(false);
+            question.SetActive(false);
+
+            DDHPD.SetActive(true);
+            quitHPD.SetActive(true);
+            noHPD.SetActive(true);
+            yesHPD.SetActive(true);
+            questionHPD.SetActive(true);
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();
