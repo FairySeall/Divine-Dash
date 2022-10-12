@@ -27,55 +27,55 @@ public class LevelCompleter : MonoBehaviour
         {
             Star1.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star2Completed") == 1)
+        if (PlayerPrefs.GetInt("Star2Completed") == 1)
         {
             Star2.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star3Completed") == 1)
+        if (PlayerPrefs.GetInt("Star3Completed") == 1)
         {
             Star3.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star4Completed") == 1)
+        if (PlayerPrefs.GetInt("Star4Completed") == 1)
         {
             Star4.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star5Completed") == 1)
+        if (PlayerPrefs.GetInt("Star5Completed") == 1)
         {
             Star5.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star6Completed") == 1)
+        if (PlayerPrefs.GetInt("Star6Completed") == 1)
         {
             Star6.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star7Completed") == 1)
+        if (PlayerPrefs.GetInt("Star7Completed") == 1)
         {
             Star7.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star8Completed") == 1)
+        if (PlayerPrefs.GetInt("Star8Completed") == 1)
         {
             Star8.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star9Completed") == 1)
+        if (PlayerPrefs.GetInt("Star9Completed") == 1)
         {
             Star9.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star10Completed") == 1)
+        if (PlayerPrefs.GetInt("Star10Completed") == 1)
         {
             Star10.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star11Completed") == 1)
+        if (PlayerPrefs.GetInt("Star11Completed") == 1)
         {
             Star11.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star12Completed") == 1)
+        if (PlayerPrefs.GetInt("Star12Completed") == 1)
         {
             Star12.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("Star13Completed") == 1)
+        if (PlayerPrefs.GetInt("Star13Completed") == 1)
         {
             Star13.enabled = true;
         }
-        else if (PlayerPrefs.GetInt("GameCompleted") == 1)
+        if (PlayerPrefs.GetInt("GameCompleted") == 1)
         {
             Crown.enabled = true;
             gameCompleted = true;
@@ -89,67 +89,67 @@ public class LevelCompleter : MonoBehaviour
             Star1.enabled = true;
             PlayerPrefs.SetInt("Star1Completed", 1);
         }
-        else if (PartEnder.currentLevel == 4)
+        if (PartEnder.currentLevel == 4)
         {
             Star2.enabled = true;
             PlayerPrefs.SetInt("Star2Completed" , 1);
         }
-        else if (PartEnder.currentLevel == 5)
+        if (PartEnder.currentLevel == 5)
         {
             Star3.enabled = true;
             PlayerPrefs.SetInt("Star3Completed", 1);
         }
-        else if (PartEnder.currentLevel == 6)
+        if (PartEnder.currentLevel == 6)
         {
             Star4.enabled = true;
             PlayerPrefs.SetInt("Star4Completed", 1);
         }
-        else if (PartEnder.currentLevel == 7)
+        if (PartEnder.currentLevel == 7)
         {
             Star5.enabled = true;
             PlayerPrefs.SetInt("Star5Completed", 1);
         }
-        else if (PartEnder.currentLevel == 8)
+        if (PartEnder.currentLevel == 8)
         {
             Star6.enabled = true;
             PlayerPrefs.SetInt("Star6Completed", 1);
         }
-        else if (PartEnder.currentLevel == 9)
+        if (PartEnder.currentLevel == 9)
         {
             Star7.enabled = true;
             PlayerPrefs.SetInt("Star7Completed", 1);
         }
-        else if (PartEnder.currentLevel == 10)
+        if (PartEnder.currentLevel == 10)
         {
             Star8.enabled = true;
             PlayerPrefs.SetInt("Star8Completed", 1);
         }
-        else if (PartEnder.currentLevel == 11)
+        if (PartEnder.currentLevel == 11)
         {
             Star9.enabled = true;
             PlayerPrefs.SetInt("Star9Completed", 1);
         }
-        else if (PartEnder.currentLevel == 12)
+        if (PartEnder.currentLevel == 12)
         {
             Star10.enabled = true;
             PlayerPrefs.SetInt("Star10Completed", 1);
         }
-        else if (PartEnder.currentLevel == 13)
+        if (PartEnder.currentLevel == 13)
         {
             Star11.enabled = true;
             PlayerPrefs.SetInt("Star11Completed", 1);
         }
-        else if (PartEnder.currentLevel == 14)
+        if (PartEnder.currentLevel == 14)
         {
             Star12.enabled = true;
             PlayerPrefs.SetInt("Star12Completed", 1);
         }
-        else if (PartEnder.currentLevel == 15)
+        if (PartEnder.currentLevel == 15)
         {
             Star13.enabled = true;
             PlayerPrefs.SetInt("Star13Completed", 1);
         }
-        else if (GameFinished.finishedGame == 2)
+        if (GameFinished.finishedGame == 2)
         {
             Crown.enabled = true;
             PlayerPrefs.SetInt("GameCompleted", 1);
