@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     float progress = 0;
     public GameObject progressBar;
     int attemptsCount = 0;
+    public static bool died = false;
 
     void Awake ()
     {
@@ -344,6 +345,8 @@ public class GameController : MonoBehaviour
                 progressPercentage = progress * 100;
             }
         }
+
+        died = true;
 
         PlayerPrefs.SetInt("Attempts", PlayerPrefs.GetInt("Attempts") + 1);
     }
