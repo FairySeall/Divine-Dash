@@ -276,6 +276,16 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3775892079364358764, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9267
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775892079364358764, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0862
+      objectReference: {fileID: 0}
     - target: {fileID: 4652962859249380899, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
         type: 3}
       propertyPath: m_Sprite
