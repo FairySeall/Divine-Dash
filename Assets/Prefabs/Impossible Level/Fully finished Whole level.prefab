@@ -192,6 +192,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524811680166499518, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9864
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524811680166499518, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0276253
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524811680166499518, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9028
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524811680166499518, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6018
+      objectReference: {fileID: 0}
     - target: {fileID: 1795281608751690367, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
         type: 3}
       propertyPath: m_Sprite
@@ -348,6 +368,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820931869898530493, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2560301
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820931869898530493, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0271171
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820931869898530493, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2816
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820931869898530493, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6013
       objectReference: {fileID: 0}
     - target: {fileID: 7834341171448252212, guid: 2fa39279b8b50fb4e9a81bfbedddfdee,
         type: 3}
