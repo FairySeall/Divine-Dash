@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     public GameObject yesHPD;
     public GameObject questionHPD;
 
-    void Awake()
+    void Update()
     {
         if (HPDChecker.isHPD == true)
         {
