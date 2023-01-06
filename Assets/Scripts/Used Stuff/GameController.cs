@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
         if (HPDChecker.isHPD == true)
         {
             myText.enabled = false;
-            myTextHPD.enabled = false;
+            myTextHPD.enabled = true;
             myTextGD.enabled = false;
             if (LevelCompleter.gameCompleted == true)
             {

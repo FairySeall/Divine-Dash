@@ -376,7 +376,7 @@ public class ILPlayerScript : MonoBehaviour
         }
         if (other.tag == "JumpPlatform")
         {
-            JumpCount -= 1;
+            JumpCount = 0;
             isGrounded = false;
             velocityZero = 1;
             if (jumpPowerChange == true)
@@ -397,6 +397,7 @@ public class ILPlayerScript : MonoBehaviour
         }
         if (other.tag == "GravityPlatform")
         {
+            JumpCount = 0;
             velocityZero = 1;
             jumpPower = 5.0f;
             if (velocityZero == 1)
@@ -405,11 +406,12 @@ public class ILPlayerScript : MonoBehaviour
                 myRigidbody.AddForce(Vector3.up * (jumpPower * myRigidbody.mass * myRigidbody.gravityScale * 20.0f));
                 velocityZero = 0;
             }
-            JumpCount -= 1;
+            
             GravityReversed();
         }
         if (other.tag == "GravityRePlatform")
         {
+            JumpCount = 0;
             velocityZero = 1;
             jumpPower = 5.0f;
             if (velocityZero == 1)
@@ -418,7 +420,7 @@ public class ILPlayerScript : MonoBehaviour
                 myRigidbody.AddForce(Vector3.up * (jumpPower * myRigidbody.mass * myRigidbody.gravityScale * 20.0f));
                 velocityZero = 0;
             }
-            JumpCount -= 1;
+            
             GravityReReversed();
         }
         if (other.tag == ("TeleportOrbStart") && orbCheck != true)
@@ -461,6 +463,12 @@ public class ILPlayerScript : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other)
     {
+        if (other.tag == "JumpPlatform")
+        {
+            JumpCount = 0;
+            isGrounded = false;
+        }
+
         if (other.tag == "GravityOrb" && orbCheck == false)
         {
             if (jumped == true)
@@ -548,6 +556,7 @@ public class ILPlayerScript : MonoBehaviour
         if (other.tag == "NoJumpArea")
         {
             isGrounded = false;
+            JumpCount = 0;
         }
     }
     void OnTriggerExit2D(Collider2D other)
