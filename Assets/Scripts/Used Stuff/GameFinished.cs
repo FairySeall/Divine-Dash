@@ -17,16 +17,16 @@ public class GameFinished : MonoBehaviour
         {
             if (player.transform.position.x > gameDone.transform.position.x)
             {
-                FadeToMenu();
+                FadeToMenuPlease();
                 finishedGame = SceneManager.GetActiveScene().buildIndex;
             }
         }
 
     }
 
-    public void FadeToMenu()
+    public void FadeToMenuPlease()
     {
-        animator.SetTrigger("FadeOut");
+        animator.SetTrigger("FadeOutGame");
     }
 
     public void OnFadeComplete()
